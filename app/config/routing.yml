@@ -1,0 +1,29 @@
+homepage:
+  path: /
+  defaults: { _controller: AppBundle:Default:home }
+
+user_login:
+  path: /login
+  defaults: { _controller: AppBundle:User:login }
+
+user_register:
+  path: /register
+  defaults: { _controller: AppBundle:User:register }
+
+dashboard:
+  path: /dashboard
+  defaults: { _controller: AppBundle:Default:dashboard }
+
+single_recipe:
+  path: /recipe/{id}
+  defaults: {_controller: AppBundle:Recipe:single }
+  requirements:
+    id: '\d+'
+
+filter_recipe:
+  path: /recipe/filter
+  defaults: {_controller: AppBundle:Recipe:filter }
+
+all_categories:
+  path: /categories
+  defaults: {_controller: AppBundle:Category:overview }

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {{ form(form) }}
+    <hr/>
+    {% if results is not null %}
+        <h2>Resultaten: {{ results|length }}</h2>
+        {% if results|length == 0 %}
+            <p>Geen resultaten gevonden.</p>
+        {% endif %}
+
+        {% for recipe in results %}
+            <div>
+                <h4><a href="{{ path('single_recipe', {"id": recipe.id}) }}">{{ recipe.title }}</a></h4>
+                <p>{{ recipe.description|striptags[:50] ~ '...' }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

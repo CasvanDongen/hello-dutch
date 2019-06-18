@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ recipe.title }}</h1>
+    <h2>Info</h2>
+    <table>
+        <tr>
+            <td>Categorie</td>
+            <td>{{ recipe.category.name }}</td>
+        </tr>
+        <tr>
+            <td>Porties</td>
+            <td>{{ recipe.servings }}</td>
+        </tr>
+        <tr>
+            <td>Voorbereidingstijd</td>
+            {% if recipe.prepTime is null %}
+                <td>Geen</td>
+            {% else %}
+                <td>{{ recipe.prepTime.format("H:i:s") }}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td>Wachttijd</td>
+            {% if recipe.waitTime is null %}
+                <td>Geen</td>
+            {% else %}
+                <td>{{ recipe.waitTime.format("H:i:s") }}</td>
+            {% endif %}
+        </tr>
+    </table>
+    <h2>Recept</h2>
+    <p>{{ recipe.description|raw }}</p>
+{% endblock %}

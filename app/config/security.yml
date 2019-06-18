@@ -1,0 +1,26 @@
+security:
+    providers:
+        mysql:
+            entity:
+                class: AppBundle:User
+                property: username
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        prod:
+            anonymous: ~
+            form_login:
+                login_path: user_login
+                check_path: user_login
+            provider: mysql
+
+    encoders:
+        AppBundle\Entity\User: bcrypt
+
+    access_control:
+        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: ROLE_USER }
